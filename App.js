@@ -26,13 +26,16 @@ import BecomeHost from "./screens/BecomeHost";
 import QRScreen from "./screens/QRScreen";
 import StationScreen from "./screens/StationScreen";
 import SessionScreen from "./screens/SessionScreen";
-
+import Ratings from './components/Ratings'
+import PlayStore from './components/PlayStore';
 
 export default function App() {
   // const Stack = createStackNavigator();
 
   return (
-    <EditProfile />
+    // <PlayStore />
+    <Ratings />
+    // <FinalCharge />
     // <ChargingStatus />
     // <ChargingDetails />
     // <HomePageScreen />

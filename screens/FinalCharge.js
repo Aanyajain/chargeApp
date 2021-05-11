@@ -20,25 +20,24 @@ function FinalCharge(props) {
     <ScrollView style={styles.cont}>
       <SafeAreaView style={styles.cont}>
         <View>
-          {/* <ImageBackground
-            source={require("../images/finalCharge.png")}
-            style={{ width: wp("100%"), height: hp("16%") }}
-            resizeMode="cover"
-          > */}
+
           <Details
             width={wp("100%")}
             height={hp("16%")}
           />
+
           <TouchableOpacity
             onPress={() => console.log("back btn")}
             style={styles.back}
           >
+
             <Image
               style={{ width: wp("5%"), height: hp("3%") }}
               source={require("../images/Back.png")}
             />
+
           </TouchableOpacity>
-          {/* </ImageBackground> */}
+
         </View>
 
         <View flexDirection="row">
