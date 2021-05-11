@@ -7,7 +7,7 @@ import ReportScreen from "../screens/ReportScreen";
 import WorkingScreen from "../screens/WorkingScreen";
 import ReferScreen from "../screens/ReferScreen";
 import About from "../screens/About";
-import RateScreen from "../screens/RateScreen";
+import Ratings from "../components/Ratings";
 import EditProfile from "../screens/EditProfile";
 
 const Stack = createStackNavigator();
@@ -33,7 +33,7 @@ const ProfileNavigator = ({ navigation, route }) => {
       <Stack.Screen name="Work" component={WorkingScreen} />
       <Stack.Screen name="Refer" component={ReferScreen} />
       <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="Rate" component={RateScreen} />
+      <Stack.Screen name="Ratings" component={Ratings} />
     </Stack.Navigator>
   );
 };

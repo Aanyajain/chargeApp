@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { View, TextInput, Alert, KeyboardAvoidingView, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import {
+    View, TextInput, Alert,
+    KeyboardAvoidingView, ScrollView,
+    TouchableOpacity, Linking,
+    StyleSheet,
+    Text,
+} from 'react-native';
 import {
     Button,
     Overlay,
-    Text,
+
     Rating,
     AirbnbRating,
 } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { PlayStore } from 'svg'
 
-export default function RatingScreen() {
+export default function Ratings({ navigation }) {
     const [visible, setVisible] = useState(false);
     const [visble, setVisble] = useState(false);
 
@@ -31,10 +37,6 @@ export default function RatingScreen() {
         setVisible(!visible);
     }
 
-    const close1 = () => {
-
-        setVisible(!visible);
-    }
 
     // const Show = () => {
     //     setTimeout(function () {
@@ -62,7 +64,7 @@ export default function RatingScreen() {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
 
             <Button title="Open Overlay" onPress={toggleOverlay} />
 
@@ -168,3 +170,9 @@ export default function RatingScreen() {
         </View >
     );
 }
+
+const styles = StyleSheet.create({
+    cont: {
+        backgroundColor: "#F6F6F6"
+    }
+})

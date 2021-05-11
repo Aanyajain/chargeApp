@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   Text,
   ScrollView,
+  TextInput,
   SafeAreaView,
+  Platform,
+  Linking,
+  KeyboardAvoidingView,
   Image,
   ImageBackground,
   TouchableOpacity,
@@ -18,9 +22,19 @@ import ReportScreen from "./ReportScreen";
 import Editprofile from "./EditProfile";
 import {
   ProfileHeader, Loc, Icon1, Icon2, Icon3, Icon4,
-  Host, Icon5, Icon6, Logout, Facebook, Instagram, Twitter, LinkedIn, Web
+  Host, Icon5, Icon6, Logout, Facebook,
+  AppStore,
+  Instagram, Twitter, LinkedIn, Web, PlayStore
 } from 'svg'
 import { BoxShadow } from 'react-native-shadow'
+import {
+  Button,
+  Overlay,
+
+  Rating,
+  AirbnbRating,
+} from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 function ProfileScreen({ navigation }) {
 
@@ -38,6 +52,36 @@ function ProfileScreen({ navigation }) {
 
   }
 
+  const [visible, setVisible] = useState(false);
+  const [visble, setVisble] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+  const toggleplay = () => {
+    setVisble(!visble);
+  };
+
+  const ratingCompleted = () => {
+    console.log('rating');
+
+  };
+
+  const close = () => {
+    setVisble(!visble);
+    setVisible(!visible);
+  }
+
+
+  const Open = () => {
+    Linking.openURL("market://details?id=com.whatsapp");
+    //market://details?id=<<Package id>>
+  }
+
+  const OpenIOS = () => {
+    Linking.openURL("https://apps.apple.com/in/app/whatsapp-messenger/id310633997");
+  }
+  // itms-apps://itunes.apple.com/app/<<App ID>>
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView style={styles.container}>
@@ -178,9 +222,8 @@ function ProfileScreen({ navigation }) {
 
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => console.log("work")}
+            onPress={toggleOverlay}
             activeOpacity={0.5}
-
           >
 
             <View flexDirection="row">
@@ -198,6 +241,154 @@ function ProfileScreen({ navigation }) {
             <View style={styles.line}></View>
 
           </TouchableOpacity>
+          <Overlay
+            isVisible={visible}
+            onBackdropPress={toggleOverlay}
+            // fullScreen={false}
+            overlayStyle={{
+              top: 200,
+              flex: 0.5,
+              borderRadius: wp("10%"),
+              // borderTopLeftRadius: 35,
+              // borderTopRightRadius: 35,
+              backgroundColor: '#F6F6F6',
+            }}>
+
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ width: wp("100%"), flex: 1, marginBottom: 50 }}>
+              <Text style={{
+                fontSize: 30, marginLeft: 20, top: 5, padding: 10,
+                fontFamily: "SF-Pro-Display-Medium", color: "black"
+              }}>
+                Rate your veCharge experience
+          </Text>
+
+              <Rating
+                type="custom"
+                minValue={1}
+                defaultValue={2}
+                // fractions={10}
+                onFinishRating={ratingCompleted}
+                style={{
+                  top: -5,
+                  // backgroundColor: 'yellow',
+                  padding: 10,
+                }}
+                ratingColor="#3498db"
+                tintColor="#F6F6F6"
+                ratingBackgroundColor="#D3D3D3"
+              />
+
+              <KeyboardAvoidingView style={{ justifyContent: "center", alignItems: "center" }}>
+
+                <TextInput
+                  style={{
+                    paddingLeft: 15,
+                    textAlignVertical: 'top',
+                    marginTop: 10,
+                    width: "90%",
+
+                    borderWidth: 1, borderColor: "#525252",
+                    flexWrap: "wrap", borderRadius: 20
+                  }}
+                  numberOfLines={4}
+                  placeholder="Describe your experience(optional)"
+                />
+
+              </KeyboardAvoidingView>
+
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  onPress={toggleplay}
+                >
+                  <Image source={require("../images/arrow.png")}
+                    style={{
+                      height: hp("5%"),
+                      width: wp("5%"), marginLeft: wp("80%"),
+                      marginTop: hp("2%")
+                    }}
+                  />
+
+                </TouchableOpacity>
+
+              </View>
+            </ScrollView>
+          </Overlay>
+          {Platform.OS === "android" ? <Overlay
+            isVisible={visble}
+            onBackdropPress={close}
+            // fullScreen={false}
+            overlayStyle={{
+              top: 200,
+              flex: 0.5,
+              borderTopLeftRadius: 35,
+              borderTopRightRadius: 35,
+              backgroundColor: '#F6F6F6',
+            }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ width: wp("100%"), flex: 1, marginBottom: 50 }}>
+              <Text style={{
+                fontSize: 30, marginLeft: 20, top: 5, padding: 10,
+                fontFamily: "SF-Pro-Display-Medium", color: "black"
+              }}>
+                Rate your veCharge experience
+          </Text>
+              <Text style={{
+                fontFamily: "SF-Pro-Display-Regular",
+                color: "#252525", marginLeft: wp("8%"),
+                fontSize: 20, marginTop: hp("5%")
+              }}>Please rate us on the Playstore too :)</Text>
+              <TouchableOpacity onPress={Open}
+                style={{ marginTop: -wp("30%"), marginLeft: wp("10%") }}
+              >
+                <PlayStore
+                  height={hp("50%")}
+                  width={wp("50%")}
+
+                />
+              </TouchableOpacity>
+            </ScrollView>
+          </Overlay> :
+            <Overlay
+              isVisible={visble}
+              onBackdropPress={close}
+              // fullScreen={false}
+              overlayStyle={{
+                top: 200,
+                flex: 0.5,
+                borderTopLeftRadius: 35,
+                borderTopRightRadius: 35,
+                backgroundColor: '#F6F6F6',
+              }}>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                style={{ width: wp("100%"), flex: 1, marginBottom: 50 }}>
+                <Text style={{
+                  fontSize: 30, marginLeft: 20, top: 5, padding: 10,
+                  fontFamily: "SF-Pro-Display-Medium", color: "black"
+                }}>
+                  Rate your veCharge experience
+         </Text>
+                <Text style={{
+                  fontFamily: "SF-Pro-Display-Regular",
+                  color: "#252525", marginLeft: wp("8%"),
+                  fontSize: 20, marginTop: hp("5%")
+                }}>Please rate us on the Playstore too :)</Text>
+                <TouchableOpacity onPress={OpenIOS}
+                  style={{ marginTop: -wp("30%"), marginLeft: wp("10%") }}
+                >
+                  <AppStore
+                    height={hp("50%")}
+                    width={wp("50%")}
+
+                  />
+                </TouchableOpacity>
+              </ScrollView>
+            </Overlay>
+          }
+
 
           <TouchableOpacity
             onPress={() => console.log("work")}
