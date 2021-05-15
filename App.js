@@ -30,26 +30,26 @@ import Ratings from './components/Ratings'
 import PlayStore from './components/PlayStore';
 
 export default function App() {
-  const Stack = createStackNavigator();
+  // const Stack = createStackNavigator();
 
   return (
     // <PlayStore />
     // <ProfileScreen />
-    // <FinalCharge />
+    <FailedPayment />
     // <ChargingStatus />
     // <ChargingDetails />
     // <HomePageScreen />
     // <QRScreen />
     // <RegisterHost />
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="AppBottom" component={AppNavigator} />
-        <Stack.Screen name="Edit" component={EditProfile} />
-      </Stack.Navigator>
-    </NavigationContainer >
+    // <NavigationContainer>
+    //   <Stack.Navigator
+    //     screenOptions={{
+    //       headerShown: false,
+    //     }}
+    //   >
+    //     <Stack.Screen name="AppBottom" component={AppNavigator} />
+    //     <Stack.Screen name="Edit" component={EditProfile} />
+    //   </Stack.Navigator>
+    // </NavigationContainer >
   );
 }

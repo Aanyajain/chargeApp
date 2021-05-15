@@ -230,14 +230,14 @@ const styles = StyleSheet.create({
   },
   btn1: {
     width: wp("38%"),
-    height: hp("5%"),
+    height: hp("5.5%"),
     marginLeft: wp("8%"),
     borderRadius: wp("6%") / 2,
     marginTop: wp("10%"),
   },
   btn2: {
     width: wp("38%"),
-    height: hp("5%"),
+    height: hp("5.5%"),
     marginLeft: wp("8%"),
     borderRadius: wp("6%") / 2,
     marginTop: wp("10%"),
